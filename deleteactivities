@@ -1,0 +1,9 @@
+from odoo import api, models
+
+class ExceptionActivityScheduler(models.AbstractModel):
+    _name = 'exception.activity.scheduler'
+
+    @api.model
+    def delete_exception_activities(self):
+        activities = self.env['calendar.event'].search([('is_exception', '=', True)])
+        activities.unlink()
